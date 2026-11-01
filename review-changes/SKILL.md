@@ -13,7 +13,7 @@ This skill defines how to re-review your own change once the work is done (code 
 
 Build the review from deterministic tools, never from memory of what you think you changed:
 
-- **Changed files:** `git status` lists modified, staged, deleted, and untracked files.
+- **Changed files:** `git status` lists every changed file, including untracked ones.
 - **Unstaged diff:** `git diff` shows unstaged edits.
 - **Staged diff:** `git diff --staged` shows staged edits.
 - **Untracked files:** read each new file in full; `git diff` doesn't show them.
@@ -32,11 +32,11 @@ unrelated whitespace change in another module, then remove both.
 
 Read the diff as if reviewing someone else's pull request. Look for:
 
-- **Leftovers:** debugging code, print statements, commented-out code, temporary files.
+- **Leftovers:** debugging code, commented-out code, temporary files, etc.
 - **Unrelated edits:** changes outside the scope of the request.
-- **Secrets:** keys, tokens, passwords, or `.env` content.
+- **Secrets:** keys, tokens, `.env` content, etc.
 - **Broken references:** missing or broken imports, a symbol you forgot to export, renamed names still used elsewhere.
-- **Rule violations:** the coding skills (`design-code`, `structure-functions`, `write-prose`, …) applied to the changed lines.
+- **Rule violations:** the coding skills (`design-code`, `structure-functions`, `write-prose`, etc.) applied to the changed lines.
 
 ## Summarize
 
