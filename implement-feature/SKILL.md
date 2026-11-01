@@ -7,7 +7,7 @@ metadata:
 
 # Implement Feature
 
-This skill defines the workflow for any code change. The rules are project, language, and framework agnostic. When the project's own instructions set a different convention, the project wins.
+This skill defines the workflow for any code change. When the project's own instructions set a different convention, the project wins.
 
 ## Stance
 
