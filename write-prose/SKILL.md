@@ -1,6 +1,6 @@
 ---
 name: write-prose
-description: Punctuation and style rules for any human-readable text - never use the em dash, and keep inline enumerations to at most three examples. Use whenever writing any text a human reads, such as comments, docs, commit messages, etc.
+description: Punctuation and style rules for any human-readable text. Use whenever writing comments, docs, commit messages, etc.
 metadata:
   version: "0.0.1"
 ---
