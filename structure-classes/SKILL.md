@@ -1,6 +1,6 @@
 ---
 name: structure-classes
-description: Size and design limits for classes - at most 500 lines, ideally one class per file, and overridden methods instead of type switches inside a class hierarchy. Use whenever writing or changing a class or class hierarchy.
+description: Size and design rules for classes, including polymorphism over type switches. Use whenever writing or changing a class or class hierarchy.
 metadata:
   version: "0.0.1"
 ---
