@@ -1,6 +1,6 @@
 ---
 name: organize-files
-description: File-level rules - at most 1000 lines per file, explicit package exports, a single scripts folder, etc. Use when creating or splitting files, editing package entry files, or writing developer scripts.
+description: File-level rules: length, package exports, developer scripts, etc. Use when creating or splitting files, editing package entry files, or writing scripts.
 metadata:
   version: "0.0.1"
 ---
