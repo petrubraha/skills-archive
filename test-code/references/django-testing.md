@@ -2,42 +2,42 @@
 
 ## Proper Isolation (Mocks, Patches, and Fake Databases)
 
-Using Python's `unittest.mock` and `unittest.TestCase` to fully mock database models and avoid the database entirely. For example, testing the `message_feed` service in the `trails` app without hitting the database:
+Using Python's `unittest.mock` and `unittest.TestCase` to fully mock database models and avoid the database entirely. For example, testing the `order_service` module in the `orders` app without hitting the database:
 
 ```py
 import unittest
-from unittest.mock import patch, MagicMock
-from trails.services import message_feed
+from unittest.mock import MagicMock, patch
 
-class MessageFeedTests(unittest.TestCase):
+from ...services import order_service
+
+class PlaceOrderTests(unittest.TestCase):
     def setUp(self):
-        # Global mock for a WebSocket broadcast service.
-        self.patcher = patch("trails.services.message_feed.broadcast_ws_message")
-        self.mock_broadcast = self.patcher.start()
+        # Global mock for the kitchen display notification.
+        self.patcher = patch("orders.services.order_service.notify_kitchen")
+        self.mock_notify_kitchen = self.patcher.start()
         self.addCleanup(self.patcher.stop)
 
-        # Mocking a database record for a User.
-        self.fake_user = MagicMock()
-        self.fake_user.id = 1
-        self.fake_user.email = "test@varful.ro"
+        # Mocking a database record for a customer.
+        self.fake_customer = MagicMock()
+        self.fake_customer.id = 1
+        self.fake_customer.email = "customer@example.com"
 
-    @patch("trails.services.message_feed.Message")
-    def test_send_and_broadcast_user_message(self, mock_message_model):
-        mock_created_msg = MagicMock()
-        mock_message_model.objects.create.return_value = mock_created_msg
+    @patch("orders.services.order_service.Order")
+    def test_place_order_notifies_kitchen(self, mock_order_model):
+        mock_created_order = MagicMock()
+        mock_order_model.objects.create.return_value = mock_created_order
 
-        # Mocking empty validation.
-        with patch("trails.services.message_feed.check_message_not_empty", return_value=(True, "", 200)):
-            result = message_feed.send_and_broadcast_user_message(
-                sender=self.fake_user,
-                recipient=self.fake_user,
-                raw_content="Hello",
-                image_file=None
+        # Mocking the delivery area check.
+        with patch("orders.services.order_service.is_in_delivery_area", return_value=True):
+            result = order_service.place_order(
+                customer=self.fake_customer,
+                pizza_ids=[3, 7],
+                delivery_address="1 Main Street",
             )
 
-        self.assertTrue(result[1])
-        mock_message_model.objects.create.assert_called_once()
-        self.mock_broadcast.assert_called_once_with(mock_created_msg, is_group=False)
+        self.assertEqual(result, mock_created_order)
+        mock_order_model.objects.create.assert_called_once()
+        self.mock_notify_kitchen.assert_called_once_with(mock_created_order)
 ```
 
 ## Test Scope
@@ -74,7 +74,7 @@ Always use the standard Django test runner to run tests. Provide the specific mo
 **Windows / Linux / macOS (Activated Virtual Environment):**
 
 ```bash
-python manage.py test trails.tests.services.test_message_feed
+python manage.py test orders.tests.services.test_order_service
 ```
 
 _Note: If the virtual environment is not activated, prefix `python` with the path to the virtual environment's executable (e.g., `.\.venv\Scripts\python.exe` on Windows or `./.venv/bin/python` on Linux)._
@@ -87,8 +87,8 @@ Run the tests with coverage gathering, then generate the report for the specific
 
 ```bash
 # 1. Run tests with coverage gathering for a specific test file.
-coverage run manage.py test trails.tests.services.test_message_feed
+coverage run manage.py test orders.tests.services.test_order_service
 
 # 2. Generate and print the coverage report to the terminal for the specific source file.
-coverage report -m trails/services/message_feed.py
+coverage report -m orders/services/order_service.py
 ```
