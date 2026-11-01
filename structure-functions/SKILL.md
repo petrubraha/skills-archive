@@ -1,6 +1,6 @@
 ---
 name: structure-functions
-description: Size and signature limits for functions and methods - at most 3 parameters, no boolean parameters, at most 60 lines, complex checks extracted into their own functions. Use whenever writing or changing a function or method.
+description: Size and signature limits for functions and methods - at most 3 parameters, no boolean parameters, at most 60 lines, etc. Use whenever writing or changing a function or method.
 metadata:
   version: "0.0.1"
 ---
