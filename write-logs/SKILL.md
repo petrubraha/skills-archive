@@ -7,7 +7,7 @@ metadata:
 
 # Write Logs
 
-This skill defines how to write log messages. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines how to write log messages. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
