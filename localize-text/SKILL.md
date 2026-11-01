@@ -27,10 +27,10 @@ This skill defines which language each part of a codebase uses, and how to handl
 
 ```python
 # Wrong behaviour.
-raise ValidationError(_("Traseul nu a fost gasit"))
+raise ValidationError(_("Comanda nu a fost gasita"))
 
 # Correct behaviour.
-raise ValidationError(_("Traseul nu a fost găsit"))
+raise ValidationError(_("Comanda nu a fost găsită"))
 ```
 
 - **Primary language first:** implement user-facing text in the product's primary language first, then adopt localization/translation methods for the others.
@@ -42,10 +42,10 @@ raise ValidationError(_("Traseul nu a fost găsit"))
 
 ```python
 # Wrong behaviour.
-created_at = datetime.now()
+ordered_at = datetime.now()
 
 # Correct behaviour.
-created_at = datetime.now(timezone.utc)
+ordered_at = datetime.now(timezone.utc)
 ```
 
 ## Technology-Specific References
