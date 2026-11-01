@@ -7,7 +7,7 @@ metadata:
 
 # Annotate Types
 
-This skill defines how to adopt types in gradually typed code. The rules are project and framework agnostic; examples use Python for illustration.
+This skill defines how to adopt types in gradually typed code. Examples use Python, but the rules apply to any language with optional typing.
 
 ## Rules
 
