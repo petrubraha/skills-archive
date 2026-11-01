@@ -7,7 +7,7 @@ metadata:
 
 # Design Code
 
-This skill defines the core design rules for all new code. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines the core design rules for all new code. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
