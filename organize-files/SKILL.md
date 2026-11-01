@@ -1,6 +1,6 @@
 ---
 name: organize-files
-description: File-level rules: length, package exports, developer scripts, etc. Use when creating or splitting files, editing package entry files, or writing scripts.
+description: File-level rules for length, package exports, developer scripts, etc. Use when creating or splitting files, editing package entry files, or writing scripts.
 metadata:
   version: "0.0.1"
 ---
