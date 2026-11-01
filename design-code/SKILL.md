@@ -1,6 +1,6 @@
 ---
 name: design-code
-description: Core code design rules - modularity, single responsibility, strict DRY, one step per line, and named constants instead of magic numbers. Use whenever writing or reviewing source code.
+description: Core code design rules - modularity, single responsibility, strict DRY, etc. Use whenever writing or reviewing source code.
 metadata:
   version: "0.0.1"
 ---
