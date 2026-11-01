@@ -17,37 +17,37 @@ This skill defines the core design rules for all new code. Examples use Python, 
 - **Search first:** before writing new logic, search the codebase for an existing implementation. Never add a second copy of an existing feature; reuse it, or consolidate the copies.
 
 ```python
-# Wrong behaviour (in views/profile_views.py, while utils/phone.py already has format_phone_number).
-def format_phone(raw_phone):
-    return "+40" + raw_phone.lstrip("0")
+# Wrong behaviour (in views/order_views.py, while utils/money.py already has format_price).
+def format_order_total(total_cents):
+    return f"{total_cents / 100:.2f} EUR"
 
 # Correct behaviour.
-from ..utils.phone import format_phone_number
+from ..utils.money import format_price
 ```
 
 - **One step per line:** declare each intermediate value in a named variable, then pass it on, instead of nesting calls inline. It reads top to bottom and keeps indentation shallow; new refactors follow it.
 
 ```python
 # Wrong behaviour.
-notify_group(ChatRoom(request.user.id).group_name, {"type": EventType.DISCONNECT})
+kitchen.print_ticket(KitchenTicket(order.id).station, {"status": OrderStatus.CONFIRMED})
 
 # Correct behaviour.
-user_id = request.user.id
-user_chat = ChatRoom(user_id)
-event = {"type": EventType.DISCONNECT}
-notify_group(user_chat.group_name, event)
+order_id = order.id
+ticket = KitchenTicket(order_id)
+update = {"status": OrderStatus.CONFIRMED}
+kitchen.print_ticket(ticket.station, update)
 ```
 
 - **No magic numbers:** always create constants for literals that won't change; inside a class, make them static (class-level) constants.
 
 ```python
 # Wrong behaviour.
-if password_length < 8:
+if len(order.pizzas) > 10:
     pass
 
 # Correct behaviour.
-MINIMUM_PASSWORD_LENGTH = 8
-if password_length < MINIMUM_PASSWORD_LENGTH:
+MAXIMUM_PIZZAS_PER_ORDER = 10
+if len(order.pizzas) > MAXIMUM_PIZZAS_PER_ORDER:
     pass
 ```
 
