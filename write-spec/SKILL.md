@@ -30,7 +30,7 @@ This skill defines how to write an implementation spec. When the project's own i
 - **Chapters:** organize with `##`, `###`, `####`.
 - **Bullet points:** prefer bullets; avoid large blocks of text.
 - **Short statements:** simple, descriptive sentences.
-- **Bullet summaries:** every bullet starts with a bold two-word summary, e.g. `- **Glow trigger:** …`.
+- **Bullet summaries:** every bullet starts with a bold two-word summary, e.g. `- **Oven timer:** …`.
 
 ## Data and API Design
 
@@ -38,9 +38,9 @@ Apply this chapter when the work adds or changes persisted data or an API.
 
 - **4NF models:** new data models must be in fourth normal form; include a short check in the spec.
 - **Split decision:** when related settings or records could live in one model or several (e.g. one per feature or per channel), say which and why.
-- **Field names:** boolean facts read `<query verb>_<feature>_<noun>`, e.g. `saw_map_draw_publish`, `finished_map_search`.
+- **Field names:** boolean facts read `<query verb>_<feature>_<noun>`, e.g. `saw_menu_tutorial`, `finished_checkout_tour`.
 - **Idempotent writes:** preference and settings endpoints set explicit values (e.g. `PATCH` with the target state); never toggle; repeating a request never reverts it.
-- **Resource nesting:** user-scoped APIs nest under the user, e.g. `/api/users/<user_id>/…`, unless the project already uses another scheme.
+- **Resource nesting:** user-scoped APIs nest under the user, e.g. `/api/users/<user_id>/addresses`, unless the project already uses another scheme.
 - **Owner only:** user-scoped data is reachable through the public API only by its owner (`403` for everyone else, privileged users included); admins use a separate admin interface. The spec states the permission check and its tests.
 - **Legacy aliases:** a renamed route keeps its old path as an alias until no supported client version calls it.
 
