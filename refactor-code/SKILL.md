@@ -19,11 +19,11 @@ This skill defines when and how far to refactor.
 
 ```text
 # Wrong behaviour.
-Asked to add a field to a form, the agent also moves every form in the app
-to a new validation layer, without asking.
+Asked to add a delivery notes field to the checkout form, the agent also
+moves every form in the app to a new validation layer, without asking.
 
 # Correct behaviour.
-The agent adds the field, extracts the duplicated check it touched into a
-helper in the same module, and proposes the app-wide validation layer as a
-plan for human review.
+The agent adds the field, extracts the duplicated address check it touched
+into a helper in the same module, and proposes the app-wide validation layer
+as a plan for human review.
 ```
