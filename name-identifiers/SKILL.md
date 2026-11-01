@@ -7,7 +7,7 @@ metadata:
 
 # Name Identifiers
 
-This skill defines how to name variables, functions, and classes. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines how to name variables, functions, and classes. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
