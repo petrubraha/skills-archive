@@ -21,7 +21,7 @@ Build the review from deterministic tools, never from memory of what you think y
 
 ```text
 # Wrong behaviour.
-"I changed the serializer and its test, so the review is done."
+"I changed the order serializer and its test, so the review is done."
 
 # Correct behaviour.
 Run `git status` and `git diff`, notice an untracked debug script and an
