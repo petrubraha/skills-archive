@@ -1,6 +1,6 @@
 ---
 name: write-errors
-description: Rules for error messages - capitalization and no trailing period. Use whenever raising or throwing an error, or writing an error message returned to a caller.
+description: Style rules for error messages. Use whenever raising or throwing an error, or writing an error message returned to a caller.
 metadata:
   version: "0.0.1"
 ---
