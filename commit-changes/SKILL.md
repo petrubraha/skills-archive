@@ -7,7 +7,7 @@ metadata:
 
 # Commit Changes
 
-This skill defines how to name branches and write commit messages. The rules are project, language, and framework agnostic.
+This skill defines how to name branches and write commit messages.
 
 ## Types
 
