@@ -39,7 +39,7 @@ Run the full suite when the user asks for it, or when the change has a wide blas
 - Data schema or persistence layer (models, migrations, ORM mappings).
 - Global configuration (settings, environment loading, dependency injection wiring).
 - Cross-cutting hooks that run on every request or event (middleware, interceptors, event listeners).
-- Shared modules that re-export or are imported almost everywhere (barrel or index files, common utilities, base classes, base layouts or templates).
+- Shared modules that re-export or are imported almost everywhere (barrel or index files, common utilities, base classes, etc.).
 - Moving or renaming a symbol that is imported across many modules.
 
 Check the stack's reference file for its concrete wide-reach paths.
