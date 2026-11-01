@@ -7,7 +7,7 @@ metadata:
 
 # Write Spec
 
-This skill defines how to write an implementation spec. The rules are project, language, and framework agnostic. When the project's own instructions (e.g. `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md`) set a different convention, the project wins.
+This skill defines how to write an implementation spec. When the project's own instructions (e.g. `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md`) set a different convention, the project wins.
 
 ## Location
 
