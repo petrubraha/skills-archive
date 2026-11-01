@@ -7,7 +7,7 @@ metadata:
 
 # Test Code
 
-This skill defines the standard workflow and best practices for writing, executing, and fixing unit tests. The principles are framework, language, and technology agnostic.
+This skill defines the standard workflow and best practices for writing, executing, and fixing unit tests.
 
 ## Workflow
 
