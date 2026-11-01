@@ -7,7 +7,7 @@ metadata:
 
 # Structure Functions
 
-This skill defines size and signature limits for functions and methods. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines size and signature limits for functions and methods. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
