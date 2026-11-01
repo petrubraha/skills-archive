@@ -1,6 +1,6 @@
 ---
 name: write-logs
-description: Rules for log messages - standard logging utilities, no sensitive user data, capitalization, and punctuation. Use whenever adding or changing a log statement.
+description: Rules for log messages - standard logging utilities, no sensitive user data, capitalization, etc. Use whenever adding or changing a log statement.
 metadata:
   version: "0.0.1"
 ---
