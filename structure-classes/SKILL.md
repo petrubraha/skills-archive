@@ -39,7 +39,3 @@ class Salad(MenuItem):
     def preparation_minutes(self):
         return self.assembly_minutes
 ```
-
-## Technology-Specific References
-
-- If working with Django, review the [django reference](./references/django-classes.md) file.
