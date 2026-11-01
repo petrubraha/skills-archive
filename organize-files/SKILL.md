@@ -7,7 +7,7 @@ metadata:
 
 # Organize Files
 
-This skill defines how source files are sized, exported, spaced, and placed. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines how source files are sized, exported, spaced, and placed. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
