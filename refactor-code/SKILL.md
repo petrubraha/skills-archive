@@ -1,6 +1,6 @@
 ---
 name: refactor-code
-description: Rules for when and how far to refactor existing code - plan and wait for review first, keep refactors local, never start an architecture migration unasked. Use when new code requires changing existing code, when existing code has technical debt, or when asked to refactor.
+description: Rules for when and how far to refactor existing code. Use when a change requires touching existing code, when facing technical debt, or when asked to refactor.
 metadata:
   version: "0.0.1"
 ---
