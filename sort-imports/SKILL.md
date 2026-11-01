@@ -7,7 +7,7 @@ metadata:
 
 # Sort Imports
 
-This skill defines how to write and order imports. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines how to write and order imports. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
