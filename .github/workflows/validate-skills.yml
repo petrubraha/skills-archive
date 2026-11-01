@@ -1,0 +1,58 @@
+name: Validate skills
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate skills
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      - name: Find skills in the diff
+        id: skills
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # A skill is a top-level folder with a SKILL.md; deleted files are ignored.
+          skills=$(git diff --name-only --diff-filter=d "$BASE_SHA"...HEAD \
+            | cut -d/ -f1 | sort -u \
+            | while read -r folder; do
+                if [ -f "$folder/SKILL.md" ]; then echo "$folder"; fi
+              done)
+          if [ -z "$skills" ]; then
+            echo "No skill in the diff, nothing to validate."
+          else
+            echo "Skills to validate:" $skills
+          fi
+          echo "list=$(echo $skills)" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        if: steps.skills.outputs.list != ''
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install skills-ref
+        if: steps.skills.outputs.list != ''
+        run: pip install ./agentskills/skills-ref
+
+      - name: Validate skills
+        if: steps.skills.outputs.list != ''
+        env:
+          SKILLS: ${{ steps.skills.outputs.list }}
+        run: |
+          failed=0
+          for skill in $SKILLS; do
+            skills-ref validate "$skill" || failed=1
+          done
+          exit $failed
