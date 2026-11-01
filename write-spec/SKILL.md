@@ -1,6 +1,6 @@
 ---
 name: write-spec
-description: Rules for writing an implementation spec, a step-by-step plan that another agent or developer follows commit by commit. Use when asked to write, draft, or update a spec, implementation plan, or design doc for a feature or refactor.
+description: Rules for writing an implementation spec, a step-by-step plan followed commit by commit. Use when asked to write or update a spec, implementation plan, or design doc.
 metadata:
   version: "0.0.1"
 ---
