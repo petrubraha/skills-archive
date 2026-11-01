@@ -1,6 +1,6 @@
 ---
 name: localize-text
-description: Language and timezone rules - which parts of a codebase are in English, which follow the product's user languages, proper diacritics, primary-language-first user text, and UTC everywhere. Use whenever writing user-facing text, error messages, API responses, or date and time handling.
+description: Language and timezone rules - which parts of a codebase are in English, which follow the product's user languages, UTC everywhere, etc. Use whenever writing user-facing text (error messages, API responses, etc.) or handling dates and times.
 metadata:
   version: "0.0.1"
 ---
