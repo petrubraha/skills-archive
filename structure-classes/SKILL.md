@@ -7,7 +7,7 @@ metadata:
 
 # Structure Classes
 
-This skill defines size and design limits for classes. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines size and design limits for classes. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
