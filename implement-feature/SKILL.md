@@ -20,7 +20,7 @@ This skill defines the workflow for any code change. When the project's own inst
 "Done, all tests pass." (Only the edited module's tests ran.)
 
 # Correct behaviour.
-"The 12 notification tests pass. I didn't run the full suite."
+"The 12 order tests pass. I didn't run the full suite."
 ```
 
 - **Push back:** when a request conflicts with a business rule or a security constraint, state the conflict in a sentence or two, propose the alternative, then proceed with what was asked unless it is genuinely unsafe.
@@ -43,26 +43,26 @@ Finished code meets every rule below.
 
 ```python
 # Wrong behaviour.
-def cancel_booking(booking: Booking) -> None:
-    # TODO: notify the guide.
-    booking.status = BookingStatus.CANCELLED
-    booking.save()
+def cancel_order(order: Order) -> None:
+    # TODO: refund the customer.
+    order.status = OrderStatus.CANCELLED
+    order.save()
 
 # Correct behaviour.
-def cancel_booking(booking: Booking) -> None:
-    booking.status = BookingStatus.CANCELLED
-    booking.save()
-    notify_guide(booking)
+def cancel_order(order: Order) -> None:
+    order.status = OrderStatus.CANCELLED
+    order.save()
+    refund_customer(order)
 ```
 
 - **No exposed secrets:** never commit `.env` or other secret files; never log or return raw tokens, passwords, or API keys.
 
 ```python
 # Wrong behaviour.
-return Response({"status": "linked", "access_token": access_token})
+return Response({"status": "paid", "payment_token": payment_token})
 
 # Correct behaviour.
-return Response({"status": "linked"})
+return Response({"status": "paid"})
 ```
 
 - **Security intact:** never bypass or remove security mechanisms (middleware, permission checks, rate limits, etc.).
@@ -76,12 +76,12 @@ return Response({"status": "linked"})
 
 ```python
 # Wrong behaviour (the module uses 4-space indentation and snake_case).
-def getTotal(items):
-  return sum(item.price for item in items)
+def getOrderTotal(pizzas):
+  return sum(pizza.price for pizza in pizzas)
 
 # Correct behaviour.
-def get_total(items):
-    return sum(item.price for item in items)
+def get_order_total(pizzas):
+    return sum(pizza.price for pizza in pizzas)
 ```
 
 ## Related Skills
