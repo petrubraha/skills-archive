@@ -6,26 +6,24 @@ Each skill is a folder with a `SKILL.md` file (frontmatter with `name` and `desc
 
 ## Skills
 
-| Skill | Purpose |
-| --- | --- |
-| `annotate-types` | Annotate parameters, return values, and variables in optionally typed languages |
-| `commit-changes` | Branch and commit message naming with shared type prefixes |
-| `design-code` | Modularity, single responsibility, DRY, etc. |
-| `implement-feature` | End-to-end workflow for any coding task, plus the definition of done |
-| `localize-text` | Which text is English, which follows user languages, UTC everywhere, etc. |
-| `name-identifiers` | Descriptive names for variables, functions, and classes, no abbreviations |
-| `organize-files` | File size limits, package exports, developer scripts, etc. |
-| `refactor-code` | When and how far to refactor existing code |
-| `review-changes` | Static re-review of a finished change with `git status` and `git diff` |
-| `sort-imports` | Import placement, grouping, order, etc. |
-| `structure-classes` | Class size limits and polymorphism over type switches |
-| `structure-functions` | Function size and signature limits |
-| `test-code` | Writing, running, and fixing unit tests, plus coverage reports |
-| `write-comments` | When and how to write comments and docstrings |
-| `write-errors` | Error message style |
-| `write-logs` | Log message style and no sensitive user data |
-| `write-prose` | Punctuation and style for any human-readable text |
-| `write-spec` | Writing step-by-step implementation specs |
+- **annotate-types**: Rules for type annotations and gradual typing migration. Use when writing or changing code in an optionally typed language, such as Python, JavaScript/TypeScript, PHP, etc.
+- **commit-changes**: Naming rules for git branches and commit messages, with shared type prefixes. Use whenever creating a branch or writing a commit message.
+- **design-code**: Core code design rules (modularity, DRY, magic numbers, etc.). Use whenever writing or reviewing source code.
+- **implement-feature**: End-to-end workflow (plan, implement, test, etc.) and definition of done for any code change. Use at the start of any coding task that changes source files.
+- **localize-text**: Language, translation, and timezone rules for a codebase. Use whenever writing user-facing text (errors, API responses, UI) or handling dates and times.
+- **name-identifiers**: Naming rules for variables, functions, and classes. Use whenever declaring or renaming an identifier.
+- **organize-files**: File-level rules: length, package exports, developer scripts, etc. Use when creating or splitting files, editing package entry files, or writing scripts.
+- **refactor-code**: Rules for when and how far to refactor existing code. Use when a change requires touching existing code, when facing technical debt, or when asked to refactor.
+- **review-changes**: Static self-review of a finished change using git status and git diff, then an honest summary. Use when asked to review or re-review your own work.
+- **sort-imports**: Import grouping, ordering, and path rules. Use whenever adding, moving, or reordering imports, or resolving circular imports.
+- **structure-classes**: Size and design rules for classes, including polymorphism over type switches. Use whenever writing or changing a class or class hierarchy.
+- **structure-functions**: Size and signature limits for functions and methods (parameters, length, etc.). Use whenever writing or changing a function or method.
+- **test-code**: Workflow for writing, running, and fixing unit tests, with mocks, test scope, and coverage. Use when code needs tests, when tests fail, or when asked to run tests or report coverage.
+- **write-comments**: Rules for code comments and docstrings. Use whenever adding, editing, or reviewing comments, docstrings, or doc comments.
+- **write-errors**: Style rules for error messages. Use whenever raising or throwing an error, or writing an error message returned to a caller.
+- **write-logs**: Style and sensitive-data rules for log messages. Use whenever adding or changing a log statement.
+- **write-prose**: Punctuation and style rules for any human-readable text. Use whenever writing comments, docs, commit messages, etc.
+- **write-spec**: Rules for writing an implementation spec, a step-by-step plan followed commit by commit. Use when asked to write or update a spec, implementation plan, or design doc.
 
 ## Workflow
 
