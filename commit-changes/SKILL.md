@@ -1,6 +1,6 @@
 ---
 name: commit-changes
-description: Naming rules for git branches and commit messages, sharing one set of type prefixes (feat, fix, doc, test, ci, chore). Use whenever creating a branch or writing a commit message.
+description: Naming rules for git branches and commit messages, sharing one set of type prefixes (feat, fix, doc, etc.). Use whenever creating a branch or writing a commit message.
 metadata:
   version: "0.0.1"
 ---
@@ -38,7 +38,7 @@ fix/models
 
 ## Commit Messages
 
-- **Format:** `<type>: <summary>`, with the type prefix, a colon, a space, and a short summary of the change.
+- **Format:** `<type>: <summary>`, with the type prefix, a `: ` separator, and a short summary of the change.
 - **One type:** if a commit needs two types, split it into two commits.
 
 ```text
