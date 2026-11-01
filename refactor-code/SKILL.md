@@ -7,7 +7,7 @@ metadata:
 
 # Refactor Code
 
-This skill defines when and how far to refactor. The rules are project, language, and framework agnostic.
+This skill defines when and how far to refactor.
 
 ## Rules
 
