@@ -17,27 +17,27 @@ This skill defines size and design limits for classes. Examples use Python, but 
 
 ```python
 # Wrong behaviour.
-def get_author(publication):
-    if isinstance(publication, Post):
-        return publication.writer
-    if isinstance(publication, Review):
-        return publication.reviewer
+def get_preparation_minutes(menu_item):
+    if isinstance(menu_item, Pizza):
+        return menu_item.oven_minutes
+    if isinstance(menu_item, Salad):
+        return menu_item.assembly_minutes
 
 # Correct behaviour.
-class Publication:
+class MenuItem:
     @property
-    def author(self):
+    def preparation_minutes(self):
         raise NotImplementedError
 
-class Post(Publication):
+class Pizza(MenuItem):
     @property
-    def author(self):
-        return self.writer
+    def preparation_minutes(self):
+        return self.oven_minutes
 
-class Review(Publication):
+class Salad(MenuItem):
     @property
-    def author(self):
-        return self.reviewer
+    def preparation_minutes(self):
+        return self.assembly_minutes
 ```
 
 ## Technology-Specific References
