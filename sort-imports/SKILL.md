@@ -1,6 +1,6 @@
 ---
 name: sort-imports
-description: Import rules - placement, grouping and order, shortest relative paths, etc. Use whenever adding, moving, or reordering imports.
+description: Import grouping, ordering, and path rules. Use whenever adding, moving, or reordering imports, or resolving circular imports.
 metadata:
   version: "0.0.1"
 ---
