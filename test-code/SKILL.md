@@ -28,7 +28,7 @@ Tests must be fast, deterministic, and fully isolated from the main environment.
 
 - **No Main Database**: NEVER create or modify records in the main production/development database.
 - **Fake Database**: Use in-memory databases or dedicated test databases whenever possible.
-- **Mocks and Patches**: Use mocks for external dependencies (e.g., third-party APIs, email services, WebSocket broadcasts). When a database interaction is not the focus of the test, mock the database models to avoid hitting any database at all.
+- **Mocks and Patches**: Use mocks for external dependencies (e.g., payment providers, email services, SMS gateways). When a database interaction is not the focus of the test, mock the database models to avoid hitting any database at all.
 
 ## Test Scope
 
