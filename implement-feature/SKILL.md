@@ -1,6 +1,6 @@
 ---
 name: implement-feature
-description: End-to-end workflow for adding or changing code in any repository (read the docs, plan, implement, etc.), plus the engineering stance, the definition of done, and how to match the surrounding code style. Use at the start of any coding task that changes source files.
+description: End-to-end workflow (plan, implement, test, etc.) and definition of done for any code change. Use at the start of any coding task that changes source files.
 metadata:
   version: "0.0.1"
 ---
