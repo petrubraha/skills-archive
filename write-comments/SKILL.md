@@ -1,6 +1,6 @@
 ---
 name: write-comments
-description: Rules for code comments and docstrings - when to comment, when to delete, preferring docstrings, etc. Use whenever adding, editing, or reviewing comments, docstrings, or doc comments.
+description: Rules for code comments and docstrings. Use whenever adding, editing, or reviewing comments, docstrings, or doc comments.
 metadata:
   version: "0.0.1"
 ---
