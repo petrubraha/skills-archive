@@ -1,6 +1,6 @@
 ---
 name: name-identifiers
-description: Naming rules for variables, functions, and classes - descriptive, suggestive names and no abbreviations. Use whenever declaring or renaming an identifier.
+description: Naming rules for variables, functions, and classes. Use whenever declaring or renaming an identifier.
 metadata:
   version: "0.0.1"
 ---
