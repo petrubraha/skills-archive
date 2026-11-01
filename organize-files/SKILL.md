@@ -16,10 +16,10 @@ This skill defines how source files are sized, exported, placed, etc. Examples u
 
 ```python
 # Wrong behaviour (in services/__init__.py).
-from .notifications import *
+from .delivery import *
 
 # Correct behaviour.
-from .notifications import build_notifier, send_digest
+from .delivery import assign_courier, estimate_delivery_time
 ```
 
 - **Whitespace:** use one blank line between functions and methods, and two blank lines between classes, unless the language's standard formatter decides otherwise.
@@ -27,12 +27,12 @@ from .notifications import build_notifier, send_digest
 - **Script paths:** scripts resolve paths from their own location, not from the current directory, so they work wherever they are run from.
 
 ```python
-# Wrong behaviour (in scripts/fix_translations.py).
-translations_path = Path("locale/ro/messages.po")
+# Wrong behaviour (in scripts/import_menu.py).
+menu_path = Path("data/menu.csv")
 
 # Correct behaviour.
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-translations_path = PROJECT_ROOT / "locale" / "ro" / "messages.po"
+menu_path = PROJECT_ROOT / "data" / "menu.csv"
 ```
 
 - **App logic:** logic the application runs belongs in the framework's command or task mechanism, not in `scripts/`.
@@ -41,12 +41,12 @@ translations_path = PROJECT_ROOT / "locale" / "ro" / "messages.po"
 
 ```text
 # Wrong behaviour.
-app/views/_helpers.py
-app/services/common.py
+orders/views/_helpers.py
+orders/services/common.py
 
 # Correct behaviour.
-app/utils/dates.py
-app/utils/phone.py
+utils/prices.py
+utils/addresses.py
 ```
 
 ## Technology-Specific References
