@@ -20,11 +20,11 @@ This skill defines how to write and order imports. Examples use Python, but the 
 - **Circular imports:** move shared code into a common module first. Use local imports or other workarounds only as a last resort.
 
 ```python
-# Wrong behaviour (in shop/views/cart_views.py).
-from shop.services import pricing
+# Wrong behaviour (in orders/views/cart_views.py).
+from orders.services import pricing
 import os
 from requests import Session
-from shop.models import Cart, CartItem, Discount, Product
+from orders.models import Cart, CartItem, Coupon, Pizza
 
 # Correct behaviour.
 import os
@@ -34,8 +34,8 @@ from requests import Session
 from ..models import (
     Cart,
     CartItem,
-    Discount,
-    Product,
+    Coupon,
+    Pizza,
 )
 from ..services import pricing
 ```
