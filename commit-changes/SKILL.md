@@ -1,6 +1,6 @@
 ---
 name: commit-changes
-description: Naming rules for git branches and commit messages, sharing one set of type prefixes (feat, fix, doc, etc.). Use whenever creating a branch or writing a commit message.
+description: Naming rules for git branches and commit messages, with shared type prefixes. Use whenever creating a branch or writing a commit message.
 metadata:
   version: "0.0.1"
 ---
