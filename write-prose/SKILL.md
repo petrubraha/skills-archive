@@ -1,13 +1,20 @@
 ---
 name: write-prose
-description: Punctuation and style rules for any human-readable text - never use the em dash. Use whenever writing comments, docs, specs, logs, error messages, commit messages, UI text, or replies to the user.
+description: Punctuation and style rules for any human-readable text - never use the em dash, and keep inline enumerations to at most three examples. Use whenever writing any text a human reads, such as comments, docs, commit messages, etc.
 metadata:
   version: "0.0.1"
 ---
 
 # Write Prose
 
-This skill defines style rules for any text a human reads: comments, docstrings, documentation, specs, logs, error messages, commit messages, user interface text, and replies.
+This skill defines style rules for any text a human reads:
+
+- comments and docstrings
+- documentation and specs
+- logs and error messages
+- commit messages
+- user interface text
+- replies to the user
 
 ## Rules
 
@@ -19,4 +26,21 @@ The cache is rebuilt on startup — this takes a few seconds.
 
 # Correct behaviour.
 The cache is rebuilt on startup, which takes a few seconds.
+```
+
+- **Short enumerations:** an inline enumeration stops after three examples and ends with "etc.". When every item is needed, use a bullet list instead.
+
+```text
+# Wrong behaviour.
+Applies to comments, docstrings, documentation, specs, logs, error messages, and commit messages.
+
+# Correct behaviour: three examples are enough.
+Applies to any written text, e.g. docs, specs, code, etc.
+
+# Correct behaviour: every item is needed.
+Applies to:
+- comments
+- docstrings
+- documentation
+- specs
 ```
