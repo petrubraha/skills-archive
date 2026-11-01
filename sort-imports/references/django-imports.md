@@ -10,7 +10,7 @@ python -m isort trails mountaintrails
 
 ## Relative Imports
 
-- **Own apps:** import code from the project's own Django apps (e.g. `trails`) with relative imports only, never `from trails.… import …` or `import trails.…`. This holds for views, services, models, tests, and management commands.
+- **Own apps:** import code from the project's own Django apps (e.g. `trails`) with relative imports only, never `from trails.… import …` or `import trails.…`. This holds for every module, e.g. views, services, tests, etc.
 - **Migrations:** keep migrations exactly as `makemigrations` generates them; never rewrite their imports.
 - **Project package:** the project package (e.g. `mountaintrails/`, holding settings and root URLs) imports the apps absolutely, from outside them.
 - **Package re-exports:** import from a package's `__init__.py` when it re-exports the symbol, e.g. `from ..services.notifications_services import build_notifier`.
