@@ -7,7 +7,7 @@ metadata:
 
 # Review Changes
 
-This skill defines how to re-review your own change once the work is done (code written, tests run, tools called). The review is static: read the change, don't re-run the work. The rules are project, language, and framework agnostic.
+This skill defines how to re-review your own change once the work is done (code written, tests run, tools called). The review is static: read the change, don't re-run the work.
 
 ## Gather the Change
 
