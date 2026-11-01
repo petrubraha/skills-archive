@@ -7,7 +7,7 @@ metadata:
 
 # Write Comments
 
-This skill defines when and how to write comments. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines when and how to write comments. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
