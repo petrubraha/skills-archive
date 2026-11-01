@@ -1,6 +1,6 @@
 ---
 name: implement-feature
-description: End-to-end workflow for adding or changing code in any repository - read the project docs, plan, implement, run static analysis, test, and update docs - plus the engineering stance, the definition of done, and how to match the surrounding code style. Use at the start of any coding task that changes source files.
+description: End-to-end workflow for adding or changing code in any repository (read the docs, plan, implement, etc.), plus the engineering stance, the definition of done, and how to match the surrounding code style. Use at the start of any coding task that changes source files.
 metadata:
   version: "0.0.1"
 ---
@@ -39,7 +39,7 @@ This skill defines the workflow for any code change. When the project's own inst
 
 Finished code meets every rule below.
 
-- **No placeholders:** no stubs, `FIXME`s, `TODO`s, or placeholder bodies.
+- **No placeholders:** no stubs, `TODO`s, `FIXME`s, etc.
 
 ```python
 # Wrong behaviour.
@@ -65,7 +65,7 @@ return Response({"status": "linked", "access_token": access_token})
 return Response({"status": "linked"})
 ```
 
-- **Security intact:** never bypass or remove security mechanisms (middleware, permission checks, rate limits, honeypot routes).
+- **Security intact:** never bypass or remove security mechanisms (middleware, permission checks, rate limits, etc.).
 - **Contracts kept:** never break a public contract (response shapes, field casing, routes) that existing clients depend on, especially clients you can't redeploy on demand, such as mobile apps. Change a contract only when the task asks for it, and keep legacy aliases.
 
 ## Context
@@ -88,11 +88,11 @@ def get_total(items):
 
 Apply these while implementing:
 
-- `design-code`: modularity, single responsibility, DRY, one step per line, constants.
+- `design-code`: modularity, single responsibility, DRY, etc.
 - `name-identifiers`: descriptive names, no abbreviations.
 - `structure-functions`: parameter count, boolean parameters, function length.
 - `structure-classes`: class length, one class per file, no type switches.
-- `organize-files`: file length, package exports, whitespace, scripts.
+- `organize-files`: file length, package exports, whitespace, etc.
 - `sort-imports`: import grouping, order, and paths.
 - `annotate-types`: type annotations.
 - `write-comments`, `write-logs`, `write-errors`: message and comment style.
