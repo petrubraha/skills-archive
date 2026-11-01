@@ -10,14 +10,14 @@ Each skill is a folder with a `SKILL.md` file (frontmatter with `name` and `desc
 | --- | --- |
 | `annotate-types` | Annotate parameters, return values, and variables in optionally typed languages |
 | `commit-changes` | Branch and commit message naming with shared type prefixes |
-| `design-code` | Modularity, single responsibility, DRY, one step per line, named constants |
+| `design-code` | Modularity, single responsibility, DRY, etc. |
 | `implement-feature` | End-to-end workflow for any coding task, plus the definition of done |
-| `localize-text` | Which text is English, which follows user languages, diacritics, UTC everywhere |
+| `localize-text` | Which text is English, which follows user languages, UTC everywhere, etc. |
 | `name-identifiers` | Descriptive names for variables, functions, and classes, no abbreviations |
-| `organize-files` | File size limits, package exports, spacing, and developer scripts |
+| `organize-files` | File size limits, package exports, developer scripts, etc. |
 | `refactor-code` | When and how far to refactor existing code |
 | `review-changes` | Static re-review of a finished change with `git status` and `git diff` |
-| `sort-imports` | Import placement, grouping, order, and circular imports |
+| `sort-imports` | Import placement, grouping, order, etc. |
 | `structure-classes` | Class size limits and polymorphism over type switches |
 | `structure-functions` | Function size and signature limits |
 | `test-code` | Writing, running, and fixing unit tests, plus coverage reports |
