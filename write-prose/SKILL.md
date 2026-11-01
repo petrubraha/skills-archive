@@ -7,7 +7,7 @@ metadata:
 
 # Write Prose
 
-This skill defines style rules for any text a human reads: comments, docstrings, documentation, specs, logs, error messages, commit messages, user interface text, and replies. The rules are project, language, and framework agnostic.
+This skill defines style rules for any text a human reads: comments, docstrings, documentation, specs, logs, error messages, commit messages, user interface text, and replies.
 
 ## Rules
 
