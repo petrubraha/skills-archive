@@ -18,7 +18,7 @@ This skill defines style rules for any text a human reads:
 
 ## Rules
 
-- **No em dash:** never use the em dash (`—`). Use a colon, a comma, parentheses, or a separate sentence instead.
+- **No em dash:** never use the em dash (`—`). Use a comma, a colon, a separate sentence, etc. instead.
 
 ```text
 # Wrong behaviour.
@@ -28,7 +28,7 @@ The cache is rebuilt on startup — this takes a few seconds.
 The cache is rebuilt on startup, which takes a few seconds.
 ```
 
-- **Short enumerations:** an inline enumeration stops after three examples and ends with "etc.". When every item is needed, use a bullet list instead.
+- **Short enumerations:** an inline enumeration lists at most three items. If more exist, keep three and end with "etc."; if every item is needed, use a bullet list instead.
 
 ```text
 # Wrong behaviour.
