@@ -7,7 +7,7 @@ metadata:
 
 # Localize Text
 
-This skill defines which language each part of a codebase uses, and how to handle time. The rules are project, language, and framework agnostic; examples use Python for illustration.
+This skill defines which language each part of a codebase uses, and how to handle time. Examples use Python, but the rules apply to any language.
 
 ## Language
 
