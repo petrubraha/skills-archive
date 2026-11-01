@@ -1,6 +1,6 @@
 ---
 name: annotate-types
-description: Type annotation rules - annotate parameters, return values, and variables whenever possible, migrating untyped code gradually. Use whenever writing or changing functions or variables in a language with optional typing (Python, JavaScript/TypeScript, PHP, Ruby).
+description: Type annotation rules - annotate parameters, return values, and variables whenever possible, migrating untyped code gradually. Use whenever writing or changing functions or variables in a language with optional typing (Python, JavaScript/TypeScript, PHP, etc.).
 metadata:
   version: "0.0.1"
 ---
