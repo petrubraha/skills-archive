@@ -1,13 +1,13 @@
 ---
 name: organize-files
-description: File-level rules - at most 1000 lines per file, explicit package exports, blank-line spacing, and where one-off scripts live and how they resolve paths. Use when creating files, splitting large files, editing package entry files, or writing developer scripts.
+description: File-level rules - at most 1000 lines per file, explicit package exports, a single scripts folder, etc. Use when creating or splitting files, editing package entry files, or writing developer scripts.
 metadata:
   version: "0.0.1"
 ---
 
 # Organize Files
 
-This skill defines how source files are sized, exported, spaced, and placed. Examples use Python, but the rules apply to any language.
+This skill defines how source files are sized, exported, placed, etc. Examples use Python, but the rules apply to any language.
 
 ## Rules
 
