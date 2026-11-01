@@ -1,6 +1,6 @@
 ---
 name: review-changes
-description: Static re-review of your own finished change, using deterministic tools (git status, git diff) instead of memory, then an honest summary. Use when asked to review or re-review the work after implementing, testing, and running tools.
+description: Static self-review of a finished change using git status and git diff, then an honest summary. Use when asked to review or re-review your own work.
 metadata:
   version: "0.0.1"
 ---
