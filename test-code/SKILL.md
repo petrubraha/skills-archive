@@ -1,6 +1,6 @@
 ---
 name: test-code
-description: Workflow and best practices for writing, executing, and fixing unit tests - isolation with mocks and fake databases, which tests to run for a change, and coverage reports. Use when adding or changing code that needs tests, when tests fail, or when asked to run tests or report coverage.
+description: Workflow for writing, running, and fixing unit tests, with mocks, test scope, and coverage. Use when code needs tests, when tests fail, or when asked to run tests or report coverage.
 metadata:
   version: "0.0.1"
 ---
