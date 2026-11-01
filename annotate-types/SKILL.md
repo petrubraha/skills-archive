@@ -16,10 +16,10 @@ This skill defines how to adopt types in gradually typed code. Examples use Pyth
 
 ```python
 # Wrong behaviour.
-def calculate_total(price, tax_rate):
+def calculate_order_total(pizza_prices, delivery_fee):
     pass
 
 # Correct behaviour.
-def calculate_total(price: float, tax_rate: float) -> float:
+def calculate_order_total(pizza_prices: list[float], delivery_fee: float) -> float:
     pass
 ```
