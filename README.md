@@ -6,24 +6,26 @@ Each skill is a folder with a `SKILL.md` file (frontmatter with `name` and `desc
 
 ## Skills
 
-- **annotate-types**: Type annotation rules. Use when writing code in optionally typed languages like Python or TypeScript.
-- **commit-changes**: Git branch and commit message naming. Use when creating a branch or commit.
-- **design-code**: Core design rules (modularity, DRY, magic numbers, etc.). Use when writing or reviewing code.
-- **implement-feature**: End-to-end coding workflow and definition of done. Use at the start of any coding task.
-- **localize-text**: Language, translation, and timezone rules. Use for user-facing text or dates and times.
-- **name-identifiers**: Naming rules for variables, functions, and classes. Use when declaring or renaming one.
-- **organize-files**: File length, exports, and script placement rules. Use when creating or splitting files.
-- **refactor-code**: When and how far to refactor. Use when changing existing code or facing technical debt.
-- **review-changes**: Static self-review with git status and git diff. Use when asked to review your own work.
-- **sort-imports**: Import grouping, ordering, and path rules. Use when adding or reordering imports.
-- **structure-classes**: Class size and design rules. Use when writing or changing a class or class hierarchy.
-- **structure-functions**: Function size and signature limits. Use when writing or changing a function or method.
-- **test-code**: Unit testing workflow with mocks, test scope, and coverage. Use when code needs tests or tests fail.
-- **write-comments**: Rules for comments and docstrings. Use when adding or editing them.
-- **write-errors**: Error message style. Use when raising an error or returning an error message.
-- **write-logs**: Log message style and sensitive data. Use when adding or changing a log statement.
-- **write-prose**: Punctuation and style for human-readable text. Use when writing comments, docs, etc.
-- **write-spec**: Rules for implementation specs. Use when asked to write or update a spec or implementation plan.
+| Skill                 | Covers                                               |
+| --------------------- | ---------------------------------------------------- |
+| `annotate-types`      | Annotating parameters and returns, gradual migration |
+| `commit-changes`      | Shared type prefixes for branches and commits        |
+| `design-code`         | Modularity, DRY, named constants, etc.               |
+| `implement-feature`   | Plan-to-docs workflow and definition of done         |
+| `localize-text`       | English vs. user languages, diacritics, UTC          |
+| `name-identifiers`    | Descriptive names, no abbreviations                  |
+| `organize-files`      | 1000-line limit, explicit exports, scripts folder    |
+| `refactor-code`       | Plan first, stay local, no unasked migrations        |
+| `review-changes`      | Re-reading the diff, then an honest summary          |
+| `sort-imports`        | Three groups, relative paths, circular imports       |
+| `structure-classes`   | 500-line limit, polymorphism over type switches      |
+| `structure-functions` | Max 3 parameters, no booleans, 60-line limit         |
+| `test-code`           | Isolation with mocks, test scope, coverage           |
+| `write-comments`      | When to comment, docstrings over inline comments     |
+| `write-errors`        | Capitalization, no trailing period                   |
+| `write-logs`          | No sensitive data, capitalization, final period      |
+| `write-prose`         | No em dash, short enumerations                       |
+| `write-spec`          | Step-by-step plans, one commit per step              |
 
 ## Workflow
 
