@@ -20,9 +20,7 @@ jobs:
   resolve:
     uses: petrubraha/comment-resolver-agent/.github/workflows/resolve-review-comments.yml@v1
     with:
-      # The shared workflow prefers the Client ID and falls back to the App ID.
       client-id: ${{ vars.APP_CLIENT_ID }}
-      app-id: ${{ vars.APP_ID }}
       pr-number: ${{ inputs.pr-number }}
       review-id: ${{ inputs.review-id }}
       gemini-model: ${{ vars.GEMINI_MODEL || 'gemini-3.8-flash' }}
