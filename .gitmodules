@@ -1,3 +1,7 @@
 [submodule "agentskills"]
 	path = agentskills
 	url = https://github.com/agentskills/agentskills
+[submodule "comment-resolver-agent"]
+	path = comment-resolver-agent
+	url = https://github.com/petrubraha/comment-resolver-agent
+	branch = main
