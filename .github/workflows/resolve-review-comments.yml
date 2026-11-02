@@ -38,6 +38,17 @@ jobs:
           # The token stays off disk while Gemini runs; the push step adds it back.
           persist-credentials: false
 
+      - name: Configure the bot as commit author
+        id: git_setup
+        env:
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
+          APP_SLUG: ${{ steps.app_token.outputs.app-slug }}
+        run: |
+          bot_id=$(gh api "users/${APP_SLUG}%5Bbot%5D" --jq .id)
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email "${bot_id}+${APP_SLUG}[bot]@users.noreply.github.com"
+          echo "base_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Collect review comments
         id: comments
         env:
@@ -70,57 +81,74 @@ jobs:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           # Strongest model on the Gemini API free tier; set the GEMINI_MODEL variable to override.
           gemini_model: ${{ vars.GEMINI_MODEL || 'gemini-3.8-flash' }}
-          # The action runs Gemini with --yolo, so only file tools are allowed: no shell, no network.
+          # The action runs Gemini with --yolo, so only file tools and two git commands are allowed.
+          # Gemini has no token: it can commit locally but never push.
           settings: |-
             {
-              "model": { "maxSessionTurns": 40 },
+              "model": { "maxSessionTurns": 60 },
               "tools": {
-                "core": ["list_directory", "read_file", "read_many_files", "glob", "grep_search", "write_file", "replace"]
+                "core": [
+                  "list_directory",
+                  "read_file",
+                  "read_many_files",
+                  "glob",
+                  "grep_search",
+                  "write_file",
+                  "replace",
+                  "run_shell_command(git add)",
+                  "run_shell_command(git commit)"
+                ]
               }
             }
           prompt: |-
-            You resolve pull request review comments in this repository.
+            You resolve pull request review comments in this repository, with one commit per comment.
 
             1. Read `.gemini/review-comments.json`. It holds the review summary and the inline comments, each with
                the file `path`, the `line`, the `comment` text, and the `diff_hunk` it refers to.
-            2. For each comment, read the file, make the requested change, and keep the change limited to what the
-               comment asks. If a comment is a question or is unclear, don't change code for it.
+            2. Handle the comments one at a time, in order. For each comment:
+               - Read the file and make only the change the comment asks for.
+               - Stage exactly the files you changed with `git add <path>`.
+               - Commit with `git commit -m "<type>: <summary>"`, where the type is one of feat, fix, doc, test, ci,
+                 chore, and the summary is short and lowercase.
+               - If the comment is a question, is unclear, or needs no change, don't commit for it.
             3. Follow the repository's conventions: read `README.md`, and read any `SKILL.md` before editing it.
                Keep YAML frontmatter valid.
-            4. Never edit files under `.github/` or `.gemini/` (except the two files below), and never touch secrets.
-            5. Write a commit message to `.gemini/commit-message.txt`: one line, `<type>: <summary>`, where the type
-               is one of feat, fix, doc, test, ci, chore, and the summary is short and lowercase.
-            6. Write a short Markdown summary to `.gemini/summary.md`: one bullet per comment, with the file and what
-               you changed, or why you made no change.
+            4. Never edit or commit files under `.github/` or `.gemini/`, never touch secrets, and never use git
+               options that rewrite history (no `--amend`).
+            5. Finally, write a short Markdown summary to `.gemini/summary.md` (don't commit it): one bullet per
+               comment, with the file and what you changed, or why you made no change.
 
-      - name: Commit and push the fixes
+      - name: Push the fixes
         id: push
         if: steps.comments.outputs.found == 'true'
         env:
           APP_TOKEN: ${{ steps.app_token.outputs.token }}
-          APP_SLUG: ${{ steps.app_token.outputs.app-slug }}
-          GH_TOKEN: ${{ steps.app_token.outputs.token }}
           REPOSITORY: ${{ github.repository }}
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          BASE_SHA: ${{ steps.git_setup.outputs.base_sha }}
         run: |
+          # Commit anything Gemini edited but left uncommitted.
           git add -A -- . ':!.gemini' ':!gha-creds-*.json'
-          if git diff --cached --quiet; then
+          if ! git diff --cached --quiet; then
+            git commit -q -m "fix: address remaining review comments"
+          fi
+          if [ "$(git rev-parse HEAD)" = "$BASE_SHA" ]; then
             echo "Gemini made no changes."
             echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          bot_name="${APP_SLUG}[bot]"
-          bot_id=$(gh api "users/${APP_SLUG}%5Bbot%5D" --jq .id)
-          git config user.name "$bot_name"
-          git config user.email "${bot_id}+${bot_name}@users.noreply.github.com"
-          message=$(head -n 1 .gemini/commit-message.txt 2>/dev/null || true)
-          if ! printf '%s' "$message" | grep -qE '^(feat|fix|doc|test|ci|chore): .+'; then
-            message="fix: address review comments"
+          if ! git merge-base --is-ancestor "$BASE_SHA" HEAD; then
+            echo "::error::Gemini rewrote the branch history; nothing was pushed."
+            exit 1
           fi
-          git commit -q -m "$message"
+          forbidden=$(git diff --name-only "$BASE_SHA" HEAD | grep -E '^(\.github/|\.gemini/|gha-creds-)' || true)
+          if [ -n "$forbidden" ]; then
+            echo "::error::Gemini changed protected paths; nothing was pushed: $forbidden"
+            exit 1
+          fi
           git push -q "https://x-access-token:${APP_TOKEN}@github.com/${REPOSITORY}.git" "HEAD:${HEAD_REF}"
+          git log --reverse --format='- %h %s' "$BASE_SHA..HEAD" > .gemini/commits.md
           echo "pushed=true" >> "$GITHUB_OUTPUT"
-          echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Post a summary comment
         if: steps.comments.outputs.found == 'true' && always()
@@ -129,19 +157,21 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PUSHED: ${{ steps.push.outputs.pushed }}
-          SHA: ${{ steps.push.outputs.sha }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          if [ "$PUSHED" = "true" ]; then
-            header="Pushed fixes for the review in $SHA."
-          elif [ "$PUSHED" = "false" ]; then
-            header="No file changes were needed for the review."
-          else
-            header="Resolving the review failed, see the [run logs]($RUN_URL)."
-          fi
           {
-            echo "$header"
-            echo
-            cat .gemini/summary.md 2>/dev/null || true
-          } > comment.md
-          gh pr comment "$PR_NUMBER" --repo "$REPOSITORY" --body-file comment.md
+            if [ "$PUSHED" = "true" ]; then
+              echo "Pushed fixes for the review:"
+              echo
+              cat .gemini/commits.md
+            elif [ "$PUSHED" = "false" ]; then
+              echo "No file changes were needed for the review."
+            else
+              echo "Resolving the review failed, see the [run logs]($RUN_URL)."
+            fi
+            if [ -f .gemini/summary.md ]; then
+              echo
+              cat .gemini/summary.md
+            fi
+          } > .gemini/comment.md
+          gh pr comment "$PR_NUMBER" --repo "$REPOSITORY" --body-file .gemini/comment.md
