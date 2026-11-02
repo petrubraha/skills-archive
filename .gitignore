@@ -1,5 +1,6 @@
-# Gemini CLI settings and files
+# Gemini CLI settings, files, and logs
 .gemini/
+gemini-artifacts/
 
 # GitHub App credentials
 gha-creds-*.json

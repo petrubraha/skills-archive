@@ -135,13 +135,13 @@ jobs:
         run: |
           # Stage everything, then unstage the workflow's own files (no error when they're absent or ignored).
           git add -A
-          git rm -r -q --cached --ignore-unmatch -- .gemini .resolver 'gha-creds-*.json'
+          git rm -r -q --cached --ignore-unmatch -- .gemini .resolver gemini-artifacts 'gha-creds-*.json'
           if git diff --cached --quiet; then
             echo "Gemini made no changes."
             echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          forbidden=$(git diff --cached --name-only | grep -E '^(\.github/|\.gemini/|\.resolver/|gha-creds-)' || true)
+          forbidden=$(git diff --cached --name-only | grep -E '^(\.github/|\.gemini/|\.resolver/|gemini-artifacts/|gha-creds-)' || true)
           if [ -n "$forbidden" ]; then
             echo "::error::Gemini changed protected paths; nothing was pushed: $forbidden"
             exit 1
