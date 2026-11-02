@@ -33,7 +33,7 @@ Every skill is developed on its own branch named `feat/<skill-name>` and merged 
 
 ## Comment Resolver Agent
 
-[`comment-resolver-agent`](https://github.com/petrubraha/comment-resolver-agent), included as a submodule, is a reusable workflow that applies submitted pull request reviews with Gemini CLI and pushes the fixes to the reviewed branch.
+[`comment-resolver-agent`](https://github.com/petrubraha/comment-resolver-agent), included as a submodule, is a reuseable workflow that aplies submitted pull request reviews with Gemini CLI and pushes the fixes to the reviewed branch.
 
 ## Validation
 
