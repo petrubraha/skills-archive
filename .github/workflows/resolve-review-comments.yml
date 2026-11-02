@@ -133,7 +133,9 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           HEAD_REF: ${{ steps.pr.outputs.head_ref }}
         run: |
-          git add -A -- . ':!.gemini' ':!.resolver' ':!gha-creds-*.json'
+          # Stage everything, then unstage the workflow's own files (no error when they're absent or ignored).
+          git add -A
+          git rm -r -q --cached --ignore-unmatch -- .gemini .resolver 'gha-creds-*.json'
           if git diff --cached --quiet; then
             echo "Gemini made no changes."
             echo "pushed=false" >> "$GITHUB_OUTPUT"
