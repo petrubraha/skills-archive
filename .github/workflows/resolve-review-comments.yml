@@ -3,9 +3,18 @@ name: Resolve review comments
 on:
   pull_request_review:
     types: [submitted]
+  # Manual runs apply the current workflow to an earlier review.
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number
+        required: true
+      review_id:
+        description: Review ID
+        required: true
 
 concurrency:
-  group: resolve-review-comments-${{ github.event.pull_request.number }}
+  group: resolve-review-comments-${{ github.event.pull_request.number || inputs.pr_number }}
   cancel-in-progress: false
 
 permissions:
@@ -14,13 +23,15 @@ permissions:
 jobs:
   resolve:
     name: Resolve review comments
-    # Only reviews by people with write access, on open pull requests from this repository.
+    # Manual runs, or reviews by people with write access on open pull requests from this repository.
     if: >-
-      github.event.review.user.type == 'User' &&
-      github.event.review.state != 'approved' &&
-      github.event.pull_request.state == 'open' &&
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.review.author_association)
+      github.event_name == 'workflow_dispatch' || (
+        github.event.review.user.type == 'User' &&
+        github.event.review.state != 'approved' &&
+        github.event.pull_request.state == 'open' &&
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.review.author_association)
+      )
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -31,10 +42,28 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
+      - name: Look up the pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ steps.app_token.outputs.token }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number || inputs.pr_number }}
+        run: |
+          pull_request=$(gh api "repos/$REPOSITORY/pulls/$PR_NUMBER")
+          state=$(jq -r '.state' <<< "$pull_request")
+          head_repo=$(jq -r '.head.repo.full_name' <<< "$pull_request")
+          head_ref=$(jq -r '.head.ref' <<< "$pull_request")
+          if [ "$state" != "open" ] || [ "$head_repo" != "$REPOSITORY" ]; then
+            echo "::error::Pull request #$PR_NUMBER must be open and come from this repository."
+            exit 1
+          fi
+          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "head_ref=$head_ref" >> "$GITHUB_OUTPUT"
+
       - name: Check out the pull request branch
         uses: actions/checkout@v5
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ steps.pr.outputs.head_ref }}
           # The token stays off disk while Gemini runs; the push step adds it back.
           persist-credentials: false
 
@@ -43,16 +72,16 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
           REPOSITORY: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          REVIEW_ID: ${{ github.event.review.id }}
-          REVIEW_BODY: ${{ github.event.review.body }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          REVIEW_ID: ${{ github.event.review.id || inputs.review_id }}
         run: |
-          mkdir -p .gemini
+          mkdir -p .resolver
+          REVIEW_BODY=$(gh api "repos/$REPOSITORY/pulls/$PR_NUMBER/reviews/$REVIEW_ID" --jq '.body // ""')
           gh api --paginate "repos/$REPOSITORY/pulls/$PR_NUMBER/reviews/$REVIEW_ID/comments" \
             --jq '.[] | {path, line: (.line // .original_line), comment: .body, diff_hunk}' \
             | jq -s --arg review "$REVIEW_BODY" '{review_summary: $review, inline_comments: .}' \
-            > .gemini/review-comments.json
-          comment_count=$(jq '.inline_comments | length' .gemini/review-comments.json)
+            > .resolver/review-comments.json
+          comment_count=$(jq '.inline_comments | length' .resolver/review-comments.json)
           if [ "$comment_count" -eq 0 ] && [ -z "$REVIEW_BODY" ]; then
             echo "The review has no comments, nothing to resolve."
             echo "found=false" >> "$GITHUB_OUTPUT"
@@ -81,16 +110,17 @@ jobs:
           prompt: |-
             You resolve pull request review comments in this repository.
 
-            1. Read `.gemini/review-comments.json`. It holds the review summary and the inline comments, each with
+            1. Read `.resolver/review-comments.json`. It holds the review summary and the inline comments, each with
                the file `path`, the `line`, the `comment` text, and the `diff_hunk` it refers to.
             2. For each comment, read the file, make the requested change, and keep the change limited to what the
                comment asks. If a comment is a question or is unclear, don't change code for it.
             3. Follow the repository's conventions: read `README.md`, and read any `SKILL.md` before editing it.
                Keep YAML frontmatter valid.
-            4. Never edit files under `.github/` or `.gemini/` (except the two files below), and never touch secrets.
-            5. Write a commit message to `.gemini/commit-message.txt`: one line, `<type>: <summary>`, where the type
+            4. Never edit files under `.github/`, `.gemini/`, or `.resolver/` (except the two files below), and never
+               touch secrets.
+            5. Write a commit message to `.resolver/commit-message.txt`: one line, `<type>: <summary>`, where the type
                is one of feat, fix, doc, test, ci, chore, and the summary is short and lowercase.
-            6. Write a short Markdown summary to `.gemini/summary.md`: one bullet per comment, with the file and what
+            6. Write a short Markdown summary to `.resolver/summary.md`: one bullet per comment, with the file and what
                you changed, or why you made no change.
 
       - name: Commit and push the fixes
@@ -101,19 +131,24 @@ jobs:
           APP_SLUG: ${{ steps.app_token.outputs.app-slug }}
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
           REPOSITORY: ${{ github.repository }}
-          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_REF: ${{ steps.pr.outputs.head_ref }}
         run: |
-          git add -A -- . ':!.gemini' ':!gha-creds-*.json'
+          git add -A -- . ':!.gemini' ':!.resolver' ':!gha-creds-*.json'
           if git diff --cached --quiet; then
             echo "Gemini made no changes."
             echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          forbidden=$(git diff --cached --name-only | grep -E '^(\.github/|\.gemini/|\.resolver/|gha-creds-)' || true)
+          if [ -n "$forbidden" ]; then
+            echo "::error::Gemini changed protected paths; nothing was pushed: $forbidden"
+            exit 1
+          fi
           bot_name="${APP_SLUG}[bot]"
           bot_id=$(gh api "users/${APP_SLUG}%5Bbot%5D" --jq .id)
           git config user.name "$bot_name"
           git config user.email "${bot_id}+${bot_name}@users.noreply.github.com"
-          message=$(head -n 1 .gemini/commit-message.txt 2>/dev/null || true)
+          message=$(head -n 1 .resolver/commit-message.txt 2>/dev/null || true)
           if ! printf '%s' "$message" | grep -qE '^(feat|fix|doc|test|ci|chore): .+'; then
             message="fix: address review comments"
           fi
@@ -127,7 +162,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
           REPOSITORY: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
           PUSHED: ${{ steps.push.outputs.pushed }}
           SHA: ${{ steps.push.outputs.sha }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -142,6 +177,6 @@ jobs:
           {
             echo "$header"
             echo
-            cat .gemini/summary.md 2>/dev/null || true
-          } > comment.md
-          gh pr comment "$PR_NUMBER" --repo "$REPOSITORY" --body-file comment.md
+            cat .resolver/summary.md 2>/dev/null || true
+          } > .resolver/comment.md
+          gh pr comment "$PR_NUMBER" --repo "$REPOSITORY" --body-file .resolver/comment.md
