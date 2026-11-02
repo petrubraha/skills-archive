@@ -17,7 +17,7 @@ This skill defines the core design rules for all new code. Examples use Python, 
 - **Search first:** before writing new logic, search the codebase for an existing implementation. Never add a second copy of an existing feature; reuse it, or consolidate the copies.
 
 ```python
-# Wrong behaviour (in views/order_views.py, while utils/money.py already has format_price).
+# Wrong behaviour (format_price already exists in the codebase).
 def format_order_total(total_cents):
     return f"{total_cents / 100:.2f} EUR"
 
@@ -32,8 +32,7 @@ from ..utils.money import format_price
 kitchen.print_ticket(KitchenTicket(order.id).station, {"status": OrderStatus.CONFIRMED})
 
 # Correct behaviour.
-order_id = order.id
-ticket = KitchenTicket(order_id)
+ticket = KitchenTicket(order.id)
 update = {"status": OrderStatus.CONFIRMED}
 kitchen.print_ticket(ticket.station, update)
 ```
@@ -46,11 +45,11 @@ if len(order.pizzas) > 10:
     pass
 
 # Correct behaviour.
+# Define constants at the top of the module, after the imports, not just above their first use.
 MAXIMUM_PIZZAS_PER_ORDER = 10
+
+...
+
 if len(order.pizzas) > MAXIMUM_PIZZAS_PER_ORDER:
     pass
 ```
-
-## Technology-Specific References
-
-- If working with Django, review the [django reference](./references/django-design.md) file.
