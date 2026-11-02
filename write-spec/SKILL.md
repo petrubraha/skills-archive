@@ -44,11 +44,6 @@ Apply this chapter when the work adds or changes persisted data or an API.
 - **Owner only:** user-scoped data is reachable through the public API only by its owner (`403` for everyone else, privileged users included); admins use a separate admin interface. The spec states the permission check and its tests.
 - **Legacy aliases:** a renamed route keeps its old path as an alias until no supported client version calls it.
 
-## Hand-over
-
-- **Suggestions:** after writing the spec, reply with implementation suggestions as short bullets, each with a two-word summary.
-- **Answers:** answer questions about the spec in 1–3 sentences.
-
 ## Related Skills
 
 - `write-prose`: punctuation rules for the text itself (no em dash).
