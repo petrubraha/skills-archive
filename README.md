@@ -1,4 +1,4 @@
-# skills-archive
+# Skills Archive
 
 A collection of [Agent Skills](https://github.com/agentskills/agentskills) that encode coding, writing, and workflow conventions for AI coding agents.
 
