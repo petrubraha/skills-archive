@@ -33,13 +33,7 @@ Every skill is developed on its own branch named `feat/<skill-name>` and merged 
 
 ## Review Agent
 
-Submitted pull request reviews are resolved by [`comment-resolver-agent`](https://github.com/petrubraha/comment-resolver-agent), a shared workflow that runs Gemini CLI as a GitHub App. [`resolve-review-comments.yml`](.github/workflows/resolve-review-comments.yml) calls it with this repository's commit types and writing rules:
-
-- **No mention needed:** submitting a review with comments starts it; approvals and empty reviews are ignored.
-- **Same branch:** fixes are pushed to the pull request's own branch as `comment-resolver-agent[bot]`, so the validation check runs on them.
-- **Sandboxed model:** Gemini can only read and edit files. It has no shell, network, or token, and the workflow refuses to push changes under `.github/`.
-- **One commit per review:** a `<type>: <summary>` message, plus a summary comment on the pull request.
-- **Manual runs:** `gh workflow run resolve-review-comments.yml -f pr-number=<n> -f review-id=<id>` applies the current workflow to an earlier review.
+[`comment-resolver-agent`](https://github.com/petrubraha/comment-resolver-agent), included as a submodule, is a reusable workflow that applies submitted pull request reviews with Gemini CLI and pushes the fixes to the reviewed branch.
 
 ## Validation
 
