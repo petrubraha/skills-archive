@@ -31,7 +31,7 @@ Each skill is a folder with a `SKILL.md` file (frontmatter with `name` and `desc
 
 Every skill is developed on its own branch named `feat/<skill-name>` and merged into `main` through a dedicated pull request.
 
-## Review Agent
+## Comment Resolver Agent
 
 [`comment-resolver-agent`](https://github.com/petrubraha/comment-resolver-agent), included as a submodule, is a reusable workflow that applies submitted pull request reviews with Gemini CLI and pushes the fixes to the reviewed branch.
 
