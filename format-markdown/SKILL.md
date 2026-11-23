@@ -12,13 +12,13 @@ This skill defines how to format enumerations in Markdown.
 ## Bullet Points
 
 - **When to use:** choose bullets for a short enumeration without extra detail per item.
-- **Fixed shape:** every bullet reads `- **2-word concept**: max 10 words explanation`.
+- **Fixed shape:** every bullet reads `- **2-word concept:** max 10 words explanation`.
 - **Longer allowed:** exceed 10 words only when the meaning genuinely requires it.
 
 ```text
 # Correct behaviour.
-- **Fast index**: BM25 keyword search, no embeddings needed.
-- **Best index**: semantic embeddings, slower to build but more accurate.
+- **Fast index:** BM25 keyword search, no embeddings needed.
+- **Best index:** semantic embeddings, slower to build but more accurate.
 ```
 
 ## Tables
