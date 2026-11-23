@@ -9,6 +9,8 @@ Each skill is a folder with a `SKILL.md` file (frontmatter with `name` and `desc
 | Skill                 | Covers                                               |
 | --------------------- | ---------------------------------------------------- |
 | `annotate-types`      | Annotating parameters and returns, gradual migration |
+| `answer-questions`    | Concise, bulleted, fact-checked answers              |
+| `format-markdown`     | Bullet point shape and table formatting rules        |
 | `commit-changes`      | Shared type prefixes for branches and commits        |
 | `design-code`         | Modularity, DRY, named constants, etc.               |
 | `implement-feature`   | Plan-to-docs workflow and definition of done         |
