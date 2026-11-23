@@ -16,7 +16,7 @@ Each skill is a folder with a `SKILL.md` file (frontmatter with `name` and `desc
 | `implement-feature`   | Plan-to-docs workflow and definition of done         |
 | `localize-text`       | English vs. user languages, diacritics, UTC          |
 | `name-identifiers`    | Descriptive names, no abbreviations                  |
-| `organize-files`      | 1000-line limit, explicit exports, scripts folder    |
+| `structure-files`     | 1000-line limit, explicit exports, single helpers    |
 | `refactor-code`       | Plan first, stay local, no unasked migrations        |
 | `review-changes`      | Re-reading the diff, then an honest summary          |
 | `sort-imports`        | Three groups, relative paths, circular imports       |

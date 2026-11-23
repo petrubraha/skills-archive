@@ -110,7 +110,7 @@ Apply these while implementing:
 - `name-identifiers`: descriptive names, no abbreviations.
 - `structure-functions`: parameter count, boolean parameters, function length.
 - `structure-classes`: class length, one class per file, no type switches.
-- `organize-files`: file length, package exports, whitespace, etc.
+- `structure-files`: file length, package exports, whitespace, etc.
 - `sort-imports`: import grouping, order, and paths.
 - `annotate-types`: type annotations.
 - `write-comments`, `write-logs`, `write-errors`: message and comment style.
