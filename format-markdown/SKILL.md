@@ -30,7 +30,6 @@ This skill defines how to format enumerations in Markdown.
 
 ```text
 # Correct behaviour: indented, short cells, sorted by category.
-
     | Category | Runtime | Strength            |
     | -------- | ------- | ------------------- |
     | legacy   | Node.js | Largest ecosystem   |
