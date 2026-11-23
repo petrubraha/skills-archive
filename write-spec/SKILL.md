@@ -11,7 +11,7 @@ This skill defines how to write an implementation spec. When the project's own i
 
 ## Location
 
-- **Own file:** every spec is an independent Markdown file in the project's spec folder. If the project has none, use `.specs/`.
+- **Single file:** every spec is an independent Markdown file in the project's spec folder. If the project has none, use `.specs/`.
 - **Working rules:** if earlier specs exist, copy their "Working Rules" and "Definition of Done" chapters, then adapt them to the topic. Otherwise, write both chapters from scratch.
 
 ## Content
