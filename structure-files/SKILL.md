@@ -1,6 +1,6 @@
 ---
 name: structure-files
-description: File-level rules for length, package exports, developer scripts, etc. Use when creating or splitting files, editing package entry files, or writing scripts.
+description: File-level rules for length, package exports, file placement, etc. Use when creating or splitting files, or editing package entry files.
 metadata:
   version: "0.0.1"
 ---
@@ -34,7 +34,3 @@ orders/services/common.py
 utils/prices.py
 utils/addresses.py
 ```
-
-## Technology-Specific References
-
-- If working with Django, review the [django reference](./references/django-files.md) file.
