@@ -30,11 +30,11 @@ This skill defines how to format enumerations in Markdown.
 
 ```text
 # Correct behaviour: indented, short cells, sorted by category.
-    | Category | Runtime | Strength            |
-    | -------- | ------- | ------------------- |
-    | legacy   | Node.js | Largest ecosystem   |
-    | modern   | Bun     | Fast, built-in tools|
-    | modern   | Deno    | Secure by default   |
+| Runtime | Strength            |
+| ------- | ------------------- |
+| Node.js | Largest ecosystem   |
+| Bun     | Fast, built-in tools|
+| Deno    | Secure by default   |
 ```
 
 ## Related Skills
