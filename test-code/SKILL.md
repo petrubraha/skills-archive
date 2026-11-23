@@ -13,22 +13,23 @@ This skill defines the standard workflow and best practices for writing, executi
 
 When assigned a testing task, follow this strict loop until all tests pass and coverage goals are met:
 
-1. **Write Tests**: Implement the initial unit tests.
-2. **Run Tests**: Run the tests in scope (see **Test Scope** below) and observe the results.
-3. **Check for Errors**:
-   - If tests fail because the _test code is incorrect_ (e.g., wrong mock, bad assertion), fix the test.
-   - If tests fail because the _source code is incorrect_ (e.g., bug, unexpected behavior), fix the source code.
-4. **Rerun**: Execute the tests again.
-5. **Repeat**: Loop through steps 2-4 until there are **no errors**.
-6. **Report Coverage**: Generate a test coverage report and ensure the coverage goals are met. If they are not met, return to step 1 and write additional tests.
+1. **Write tests:** implement the initial unit tests.
+2. **Run tests:** run the tests in scope (see **Test Scope** below) and observe the results.
+3. **Check for errors:**
+   - If tests fail because the _test code is incorrect_ (e.g. wrong mock, bad assertion), fix the test.
+   - If tests fail because the _source code is incorrect_ (e.g. bug, unexpected behavior), fix the source code.
+4. **Rerun:** execute the tests again.
+5. **Repeat:** loop through steps 2 to 4 until there are no errors.
+6. **Report coverage:** generate a test coverage report and ensure the coverage goals are met. If they are not met, return to step 1 and write additional tests.
 
 ## Proper Isolation (Mocks, Patches, and Fake Databases)
 
 Tests must be fast, deterministic, and fully isolated from the main environment.
 
-- **No Main Database**: NEVER create or modify records in the main production/development database.
-- **Fake Database**: Use in-memory databases or dedicated test databases whenever possible.
-- **Mocks and Patches**: Use mocks for external dependencies (e.g., payment providers, email services, SMS gateways). When a database interaction is not the focus of the test, mock the database models to avoid hitting any database at all.
+- **No main database:** never create or modify records in the main production or development database.
+- **Fake database:** use in-memory databases or dedicated test databases whenever possible.
+- **Mock dependencies:** mock external dependencies, e.g. payment providers, email services, SMS gateways, etc.
+- **Mock models:** when a database interaction is not the focus of the test, mock the database models to avoid hitting any database.
 
 ## Test Scope
 
@@ -62,3 +63,8 @@ Test coverage measures how much of the source code is executed by the tests. Alw
 For specific command examples, mock patterns, and dependency information, refer to the files in the `references/` directory depending on your current stack.
 
 - If working with Django, please review the [django reference](./references/django-testing.md) file.
+
+## Related Skills
+
+- `implement-feature`: the end-to-end workflow that calls this skill for the test step.
+- `write-spec`: where the spec sets the test kinds and coverage thresholds this skill enforces.
