@@ -46,7 +46,7 @@ git clone --recurse-submodules https://github.com/petrubraha/skills-archive.git
 # or, in an existing clone
 git submodule update --init
 
-cd agentskills/skills-ref
+cd agent-agentskills/skills-ref
 python -m venv .venv
 .venv/Scripts/activate   # Windows; use .venv/bin/activate on macOS and Linux
 pip install -e .

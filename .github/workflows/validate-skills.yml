@@ -44,7 +44,7 @@ jobs:
 
       - name: Install skills-ref
         if: steps.skills.outputs.list != ''
-        run: pip install ./agentskills/skills-ref
+        run: pip install ./agent-agentskills/skills-ref
 
       - name: Validate skills
         if: steps.skills.outputs.list != ''
