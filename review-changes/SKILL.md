@@ -19,15 +19,6 @@ Build the review from deterministic tools, never from memory of what you think y
 - **Untracked files:** read each new file in full; `git diff` doesn't show them.
 - **Size check:** `git diff --stat` spots files you didn't mean to touch.
 
-```text
-# Wrong behaviour.
-"I changed the order serializer and its test, so the review is done."
-
-# Correct behaviour.
-Run `git status` and `git diff`, notice an untracked debug script and an
-unrelated whitespace change in another module, then remove both.
-```
-
 ## Review the Change
 
 Read the diff as if reviewing someone else's pull request. Look for:
