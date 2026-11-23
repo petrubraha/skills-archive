@@ -9,9 +9,15 @@ metadata:
 
 This skill defines how to write an implementation spec. When the project's own instructions (e.g. `CLAUDE.md`, `AGENTS.md`, `CONTRIBUTING.md`) set a different convention, the project wins.
 
-## Location
+## Format
 
 - **Single file:** every spec is an independent Markdown file in the project's spec folder. If the project has none, use `.specs/`.
+- **Chapters:** organize with `##`, `###`, `####`.
+- **Bullet points:** prefer bullets; avoid large blocks of text.
+- **Short statements:** simple, descriptive sentences.
+- **Bullet summaries:** every bullet starts with a bold two-word summary, e.g. `- **Oven timer:** …`.
+- **No artifacts:** keep diagrams, matrices, big tables out of the spec; link to a separate Markdown file that holds them.
+- **Class diagram:** when the system needs many classes, put a class diagram in its own Markdown file and link it.
 
 ## Content
 
@@ -37,15 +43,6 @@ This skill defines how to write an implementation spec. When the project's own i
 - **Test plan:** state how the work is tested, naming the kinds of tests each step needs (e.g. unit, integration, end to end).
 - **Publish gate:** state the boundaries that block a pull request, e.g. coverage thresholds, passing suites, etc.
 - **Clear thresholds:** give concrete numbers for each gate so the author knows when the work is done.
-
-## Format
-
-- **Chapters:** organize with `##`, `###`, `####`.
-- **Bullet points:** prefer bullets; avoid large blocks of text.
-- **Short statements:** simple, descriptive sentences.
-- **Bullet summaries:** every bullet starts with a bold two-word summary, e.g. `- **Oven timer:** …`.
-- **No artifacts:** keep diagrams, matrices, big tables out of the spec; link to a separate Markdown file that holds them.
-- **Class diagram:** when the system needs many classes, put a class diagram in its own Markdown file and link it.
 
 ## Data and API Design
 
