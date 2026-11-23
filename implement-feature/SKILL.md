@@ -72,6 +72,18 @@ return Response({"status": "paid"})
 
 - **Indentation:** use the surrounding code's indentation style.
 - **Casing:** use the surrounding code's casing.
+- **No esoteric code:** write for the next maintainer. Choose the plain, obvious construct over a clever one; avoid obscure language tricks, dense one-liners, and implicit behaviour that forces the reader to decode intent.
+
+```python
+# Wrong behaviour.
+totals = {o.id: [p.price for p in o.pizzas] and sum(p.price for p in o.pizzas) or 0 for o in orders}
+
+# Correct behaviour.
+totals = {}
+for order in orders:
+    totals[order.id] = sum(pizza.price for pizza in order.pizzas)
+```
+
 - **Debt exception:** don't copy existing style that suffers from technical debt. Write new code with best practices in mind and never lower your standards. Consider refactoring when appropriate (see the `refactor-code` skill).
 
 ```python
