@@ -11,9 +11,21 @@ This skill defines how to execute a spec written with the `write-spec` skill. Wh
 
 ## Execution
 
-- **Full autonomy:** carry the spec to completion without stopping to ask for the next step.
+- **Full autonomy:** solve problems yourself and carry the spec to completion without stopping to ask for the next step.
+- **Allowed actions:** take the actions the work needs, e.g. fetch required data, create and run migrations, etc.
+- **Machine guard:** before any action that could change a running machine (this PC or another), stop and double-check whether it affects machine state; never patch the operating system or alter machine configuration to force a fix. Log it as an unsolved issue for a human instead.
 - **Obey the steps:** follow the numbered implementation steps in order.
 - **Faulty design only:** change a step only when the design proves faulty; name the fault and the fix.
+
+## Reporting
+
+You are expected to find the optimal solution yourself most of the time. Keep a short living report throughout the active work (code, commit, push), with these three sections. Write at most one line per item.
+
+- **Contradictions:** each contradicting topic and the fix you applied.
+- **Uncertainty:** each point you were less than 70% sure about and the strategy you chose.
+- **Unsolved issues:** each issue left for a human, with its temporary fix.
+
+The human owns asking clarifying questions when something is underspecified.
 
 ## Pull Requests
 
