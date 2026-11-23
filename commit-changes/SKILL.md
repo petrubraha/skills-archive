@@ -51,6 +51,10 @@ feat: new api for users
 fix: duplicate notification on login
 ```
 
+## Modularity
+
+- **Move alone:** moving or deleting files is its own commit; never mix a move or deletion with code changes.
+
 ## Related Skills
 
 - `write-prose`: punctuation rules for the text itself (no em dash).
