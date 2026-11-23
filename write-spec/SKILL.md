@@ -18,8 +18,8 @@ This skill defines how to write an implementation spec. When the project's own i
 - **Three chapters:** every spec has goals, requirements, and precise implementation steps.
   - **Goals chapter:** state the high-level outcomes the work must reach.
   - **Requirements chapter:** spell out the unambiguous work needed to reach those goals.
-  - **Steps chapter:** break the requirements into modular commits, each one implementation step.
-    - **Numbered steps:** number the implementation steps from 0 to n; one step is one commit.
+  - **Steps chapter:** break the requirements into modular steps, each one pull request.
+    - **Numbered steps:** number the implementation steps from 0 to n; one step is one pull request.
     - **Roman grouping:** past 15 steps, group them under Roman numerals (I, II, III, etc.); keep the inner steps numbered.
     - **No decimal steps:** never write a step like 2.3; split it into its own numbered step instead.
 - **Stay concise:** state each step in the fewest words that remain precise.
@@ -61,6 +61,6 @@ These are design guidelines for the spec author, not text to copy into the spec.
 
 ## Related Skills
 
-- `implement-spec`: how the numbered steps are executed commit by commit.
+- `implement-spec`: how the numbered steps are executed, one pull request per step.
 - `design-code`: modularity, single responsibility, and DRY in the code the spec plans.
 - `write-prose`: punctuation rules for the text itself (no em dash).
