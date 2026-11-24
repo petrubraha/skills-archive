@@ -52,7 +52,7 @@ If they are missing, install them using the appropriate package manager.
 
 ## Test Commands
 
-Always execute tests using the standard test runner for the specific technology stack. Ensure you are running it within the correct isolated environment (e.g., virtualenv, Docker container).
+Always execute tests using the standard test runner for the specific technology stack. Ensure you are running it within the correct isolated environment (e.g., virtualenv, Docker container) if available.
 
 ## Coverage Commands
 
@@ -61,8 +61,6 @@ Test coverage measures how much of the source code is executed by the tests. Alw
 ## Technology-Specific References
 
 For specific command examples, mock patterns, and dependency information, refer to the files in the `references/` directory depending on your current stack.
-
-- If working with Django, please review the [django reference](./references/django-testing.md) file.
 
 ## Related Skills
 
