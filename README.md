@@ -12,6 +12,7 @@ Each skill is a folder with a `SKILL.md` file (frontmatter with `name` and `desc
 | `answer-questions`    | Concise, bulleted, fact-checked answers              |
 | `format-markdown`     | Bullet point shape and table formatting rules        |
 | `commit-changes`      | Shared type prefixes for branches and commits        |
+| `critique-design`     | Senior-engineer critique of design and architecture  |
 | `design-code`         | Modularity, DRY, named constants, etc.               |
 | `implement-feature`   | Plan-to-docs workflow and definition of done         |
 | `localize-text`       | English vs. user languages, diacritics, UTC          |
