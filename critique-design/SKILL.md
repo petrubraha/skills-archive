@@ -18,6 +18,7 @@ This skill defines how to challenge a design, architecture, or implementation th
 - **Ask before assuming:** if scale, consistency needs, team size, or constraints are unstated and they change the verdict, ask instead of inventing them. A critique built on wrong assumptions is noise.
 - **Propose the fix:** every finding names a direction to resolve it. A critique that only lists problems shifts all the work back to the user.
 - **Respect scope and cost:** weigh each change against effort and reversibility. Don't demand a rewrite where a local fix does, and don't push a new stack or framework (see `refactor-code`).
+- **Warn, don't enforce:** the perfect design often costs more than it's worth. State the risk and the trade-off, then let the user decide. If they knowingly choose a weaker version, that's a valid call; record the trade-off and move on.
 
 ## What to Examine
 
@@ -32,17 +33,21 @@ Walk the design across these dimensions; skip the ones that don't apply and say 
 
 ## Diagrams
 
-When a critique is easier to show than to describe, draw it. Use a Mermaid diagram (class, sequence, flowchart, ER, or C4-style component) to make a structural point concrete: the current coupling you object to, a race on a sequence diagram, or the architecture you propose instead.
+A diagram is one way to make a structural point concrete; prose is often enough. Use a Mermaid diagram (class, sequence, flowchart, ER, or C4-style component) when the point is hard to say in words, such as a cycle, a fan-out, or a failure path.
 
-- **Diagram to clarify, not to decorate:** add one only when it carries a point words would labor over, such as a cycle, a fan-out, or a failure path.
+- **On request, always:** if the user asks for a diagram, produce it.
+- **On your own, sparingly:** add one unprompted only when it carries a point words would labor over.
 - **Contrast when proposing:** when you suggest a restructure, show "current" and "proposed" so the change is visible.
 
 ````text
 # Example: showing a proposed decoupling instead of describing it in prose.
 ```mermaid
 flowchart LR
+    subgraph Current
+        API1[API] --> DB1[DB]
+    end
     subgraph Proposed
-        API --> Queue --> Worker --> DB
+        API2[API] --> Queue --> Worker --> DB2[DB]
     end
 ```
 ````
