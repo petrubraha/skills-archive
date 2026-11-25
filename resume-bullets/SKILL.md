@@ -1,11 +1,11 @@
 ---
-name: write-resume-bullets
+name: resume-bullets
 description: Rules for turning a project description or repository into high-impact, senior-level resume bullet points. Use whenever the user asks you to write or improve resume bullets from a project or repo.
 metadata:
   version: "0.0.1"
 ---
 
-# Write Resume Bullets
+# Resume Bullets
 
 This skill defines how to turn a project description or repository into resume bullet points that read like a senior engineer's work, from the perspective of a technical recruiter. The goal is to market real engineering merit, not to inflate it.
 
