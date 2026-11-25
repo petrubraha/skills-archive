@@ -27,6 +27,7 @@ Each skill is a folder with a `SKILL.md` file (frontmatter with `name` and `desc
 | `write-comments`      | When to comment, docstrings over inline comments     |
 | `write-errors`        | Capitalization, no trailing period                   |
 | `write-logs`          | No sensitive data, capitalization, final period      |
+| `resume-bullets`      | X-Y-Z bullets from a project, honest metrics         |
 | `write-prose`         | No em dash, short enumerations                       |
 | `write-spec`          | Step-by-step plans, one commit per step              |
 
