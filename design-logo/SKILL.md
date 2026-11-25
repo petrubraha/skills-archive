@@ -31,22 +31,6 @@ Before designing, get enough to design on purpose, not at random:
 - **Produce or specify:** if an image-generation tool is available, generate the PNG. If not, don't claim to have made a file; deliver a precise brief (shapes, colors with hex values, layout, background) the user can hand to a tool or a designer, and say that's what you're providing.
 - **Explain the choices:** give a short rationale for the main decisions, such as why a color or shape fits the project, so the user can judge and iterate.
 
-## Example
-
-```text
-# Wrong behaviour: assumes a direction, buries the spec, no rationale.
-Here's a logo for your app. [busy illustration with the app name across it]
-
-# Correct behaviour: brief first, clear spec, reasoned.
-A few questions first: what does the app do, and who uses it? Any colors or
-symbols you want in or out?
-
-[After the answers] Here's the concept, intended as a PNG at 1:1.
-A rounded hexagon (stability, the "container" feel of infra tooling) in slate
-grey on an off-white background, with a single teal node breaking the grid as
-the accent. No lettering, so it holds up as a favicon.
-```
-
 ## Related Skills
 
 - `answer-questions`: how to present the rationale and questions (concise, bulleted); this skill does not define text output format.
